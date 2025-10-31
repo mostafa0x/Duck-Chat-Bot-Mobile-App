@@ -7,15 +7,15 @@ import { Icon } from "react-native-paper";
 function BtnSend() {
   return (
     <TouchableOpacity style={styles.container}>
-      <Icon source={"send"} color="#fff" size={rf(32)} />
+      <Icon source={"send"} color="#fff" size={rf(36)} />
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    width: rf(52),
-    height: rf(52),
+    width: rf(56),
+    height: rf(56),
     borderRadius: rf(99),
     backgroundColor: Colors.primaryButton,
     justifyContent: "center",

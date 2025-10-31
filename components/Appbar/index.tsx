@@ -2,7 +2,7 @@ import { Colors, Fonts } from "@/constants/theme";
 import { rf, rw } from "@/utils/dimensions";
 import React, { memo } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import BtnHistory from "../Buttons/btnHistory";
+import BtnHistory from "../Buttons/BtnHistory";
 import Logo from "../Logo";
 
 function Appbar() {

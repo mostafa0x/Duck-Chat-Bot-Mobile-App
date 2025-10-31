@@ -1,5 +1,6 @@
 import Appbar from "@/components/Appbar";
 import BtnSend from "@/components/Buttons/BtnSend";
+import InputMessage from "@/components/InputMessage";
 import { Colors } from "@/constants/theme";
 import { rh, rw } from "@/utils/dimensions";
 import React from "react";
@@ -13,6 +14,7 @@ export default function HomeScreen() {
       </View>
       <View style={styles.sectionTwo}></View>
       <View style={styles.sectionThree}>
+        <InputMessage />
         <BtnSend />
       </View>
     </View>
@@ -38,5 +40,9 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.secondaryBg,
     paddingHorizontal: rw(34),
     paddingVertical: rh(36),
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: rw(20),
   },
 });

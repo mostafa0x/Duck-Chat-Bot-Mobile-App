@@ -1,6 +1,8 @@
 export interface AppSliceType {
   currentChat: currentChatType | null;
   history: currentChatType[];
+  myRole: role;
+  myMessage: string;
 }
 
 export type role = "assistant" | "user";

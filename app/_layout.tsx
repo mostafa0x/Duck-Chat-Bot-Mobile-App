@@ -1,9 +1,11 @@
 import { Colors } from "@/constants/theme";
+import { store } from "@/lib/store";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import "react-native-reanimated";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { Provider } from "react-redux";
 export default function RootLayout() {
   const [isLoadFonts] = useFonts({
     RobotoBold: require("@/assets/fonts/Roboto-Bold.ttf"),
@@ -17,21 +19,23 @@ export default function RootLayout() {
   }
 
   return (
-    <SafeAreaProvider>
-      <SafeAreaView
-        style={{
-          flex: 1,
-          backgroundColor: Colors.primaryBg,
-        }}
-      >
-        <Stack
-          screenOptions={{
-            headerShown: false,
-            contentStyle: { backgroundColor: Colors.primaryBg },
+    <Provider store={store}>
+      <SafeAreaProvider>
+        <SafeAreaView
+          style={{
+            flex: 1,
+            backgroundColor: Colors.primaryBg,
           }}
-        />
-        <StatusBar style="light" backgroundColor={Colors.secondaryBg} />
-      </SafeAreaView>
-    </SafeAreaProvider>
+        >
+          <Stack
+            screenOptions={{
+              headerShown: false,
+              contentStyle: { backgroundColor: Colors.primaryBg },
+            }}
+          />
+          <StatusBar style="light" backgroundColor={Colors.secondaryBg} />
+        </SafeAreaView>
+      </SafeAreaProvider>
+    </Provider>
   );
 }
