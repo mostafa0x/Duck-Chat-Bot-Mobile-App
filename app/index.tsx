@@ -1,18 +1,20 @@
 import Appbar from "@/components/Appbar";
 import BtnSend from "@/components/Buttons/BtnSend";
+import ChatList from "@/components/ChatList";
 import InputMessage from "@/components/InputMessage";
 import { Colors } from "@/constants/theme";
 import { rh, rw } from "@/utils/dimensions";
 import React from "react";
 import { StyleSheet, View } from "react-native";
-
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.sectionOne}>
         <Appbar />
       </View>
-      <View style={styles.sectionTwo}></View>
+      <View style={styles.sectionTwo}>
+        <ChatList />
+      </View>
       <View style={styles.sectionThree}>
         <InputMessage />
         <BtnSend />
@@ -36,10 +38,10 @@ const styles = StyleSheet.create({
     flex: 6,
   },
   sectionThree: {
-    flex: 0.5,
+    flex: 0.4,
     backgroundColor: Colors.secondaryBg,
     paddingHorizontal: rw(34),
-    paddingVertical: rh(36),
+    paddingVertical: rh(20),
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",

@@ -4,11 +4,22 @@ import { Image } from "expo-image";
 import React, { memo } from "react";
 import { StyleSheet, View } from "react-native";
 
-function Logo() {
+function Logo({ size = 64 }: { size: number }) {
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        {
+          width: rf(size),
+          height: rf(size),
+        },
+      ]}
+    >
       <Image
-        style={styles.img}
+        style={{
+          width: rw(size),
+          height: rh(size),
+        }}
         source={require("@/assets/images/duckIcon.png")}
       />
     </View>
@@ -19,15 +30,10 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
-    width: rf(64),
-    height: rf(64),
+
     backgroundColor: Colors.thirdButton,
     borderRadius: rf(99),
-    paddingTop: rh(7),
-  },
-  img: {
-    width: rw(64),
-    height: rh(64),
+    paddingTop: rh(5),
   },
 });
 

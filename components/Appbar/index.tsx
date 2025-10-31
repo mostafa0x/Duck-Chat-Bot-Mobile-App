@@ -9,7 +9,7 @@ function Appbar() {
   return (
     <View style={styles.container}>
       <View style={styles.leftSide}>
-        <Logo />
+        <Logo size={52} />
         <Text style={styles.label}>Duck AI</Text>
       </View>
       <View style={styles.rightSide}>
