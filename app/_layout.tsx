@@ -30,7 +30,7 @@ export default function RootLayout() {
             contentStyle: { backgroundColor: Colors.primaryBg },
           }}
         />
-        <StatusBar style="light" backgroundColor={Colors.primaryBg} />
+        <StatusBar style="light" backgroundColor={Colors.secondaryBg} />
       </SafeAreaView>
     </SafeAreaProvider>
   );

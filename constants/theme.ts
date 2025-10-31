@@ -13,4 +13,5 @@ export const Colors = {
   secondaryBg: "#111728",
   primaryButton: "#324EFF",
   secondaryButton: "#29374F",
+  thirdButton: "#314568ff",
 };
