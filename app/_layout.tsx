@@ -1,18 +1,35 @@
+import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import "react-native-reanimated";
-import { SafeAreaProvider } from "react-native-safe-area-context";
-
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 export default function RootLayout() {
+  const [isLoadFonts] = useFonts({
+    RobotoBold: require("@/assets/fonts/Roboto-Bold.ttf"),
+    RobotoSemiBold: require("@/assets/fonts/Roboto-SemiBold.ttf"),
+    RobotoMedium: require("@/assets/fonts/Roboto-Medium.ttf"),
+    RobotoLight: require("@/assets/fonts/Roboto-Light.ttf"),
+    RobotoRegular: require("@/assets/fonts/Roboto-Regular.ttf"),
+  });
+  if (!isLoadFonts) {
+    return null;
+  }
+
   return (
-    <SafeAreaProvider style={{ flex: 1 }}>
-      <Stack
-        screenOptions={{
-          headerShown: false,
-          contentStyle: { backgroundColor: "#000" },
+    <SafeAreaProvider>
+      <SafeAreaView
+        style={{
+          flex: 1,
         }}
-      />
-      <StatusBar style="auto" />
+      >
+        <Stack
+          screenOptions={{
+            headerShown: false,
+            contentStyle: { backgroundColor: "#000" },
+          }}
+        />
+        <StatusBar style="light" backgroundColor="#000" />
+      </SafeAreaView>
     </SafeAreaProvider>
   );
 }

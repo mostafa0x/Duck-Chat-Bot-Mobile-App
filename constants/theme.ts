@@ -1,3 +1,11 @@
+export const Fonts = {
+  RobotoBold: "RobotoBold",
+  RobotoSemiBold: "RobotoSemiBold",
+  RobotoMedium: "RobotoMedium",
+  RobotoLight: "RobotoLight",
+  RobotoRegular: "RobotoRegular",
+};
+
 export const Colors = {
   primaryText: "#FFFFFF",
   secondaryText: "#959DAE",
