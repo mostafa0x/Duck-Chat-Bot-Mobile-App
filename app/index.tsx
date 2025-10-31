@@ -1,4 +1,5 @@
 import Appbar from "@/components/Appbar";
+import BtnSend from "@/components/Buttons/BtnSend";
 import { Colors } from "@/constants/theme";
 import { rh, rw } from "@/utils/dimensions";
 import React from "react";
@@ -11,7 +12,9 @@ export default function HomeScreen() {
         <Appbar />
       </View>
       <View style={styles.sectionTwo}></View>
-      <View style={styles.sectionThree}></View>
+      <View style={styles.sectionThree}>
+        <BtnSend />
+      </View>
     </View>
   );
 }
