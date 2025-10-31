@@ -1,7 +1,8 @@
 import { axiosClint } from "@/lib/api/axiosClint";
-import { useQuery } from "@tanstack/react-query";
+import { ResMessageAi } from "@/types/ResMessageAi";
+import { useQuery, UseQueryResult } from "@tanstack/react-query";
 
-async function talkingDuckAi(content: string) {
+async function talkingDuckAi(content: string): Promise<ResMessageAi> {
   try {
     const res = await axiosClint.post(`
           {
@@ -19,7 +20,9 @@ async function talkingDuckAi(content: string) {
     throw err;
   }
 }
-export default function useDuckAi(content: string) {
+export default function useDuckAi(
+  content: string
+): UseQueryResult<ResMessageAi> {
   return useQuery({
     queryKey: ["duckAi", content],
     queryFn: () => talkingDuckAi(content),
