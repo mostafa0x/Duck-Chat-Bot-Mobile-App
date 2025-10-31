@@ -1,3 +1,4 @@
+import { Colors } from "@/constants/theme";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
@@ -20,15 +21,16 @@ export default function RootLayout() {
       <SafeAreaView
         style={{
           flex: 1,
+          backgroundColor: Colors.primaryBg,
         }}
       >
         <Stack
           screenOptions={{
             headerShown: false,
-            contentStyle: { backgroundColor: "#000" },
+            contentStyle: { backgroundColor: Colors.primaryBg },
           }}
         />
-        <StatusBar style="light" backgroundColor="#000" />
+        <StatusBar style="light" backgroundColor={Colors.primaryBg} />
       </SafeAreaView>
     </SafeAreaProvider>
   );
