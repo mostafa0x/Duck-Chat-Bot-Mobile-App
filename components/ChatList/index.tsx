@@ -1,12 +1,16 @@
+import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
+import { setCurrentChat } from "@/lib/store/AppSlice";
 import { Message } from "@/types/AppSliceType";
 import { rh, rw } from "@/utils/dimensions";
 import { FlashList } from "@shopify/flash-list";
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 import Item_ChatList from "./Item";
 import ListHeader from "./ListHeader";
 
 export default function ChatList() {
+  const dispatch = useAppDispatch();
+  const { currentChat } = useAppSelector((state) => state.AppReducer);
   const renderItem = useCallback(({ item }: { item: Message }) => {
     return <Item_ChatList message={item} />;
   }, []);
@@ -15,14 +19,16 @@ export default function ChatList() {
     return <View style={styles.itemSeparator}></View>;
   }, []);
 
+  useEffect(() => {
+    !currentChat && dispatch(setCurrentChat({ id: Date.now(), messages: [] }));
+    return () => {};
+  }, []);
+
   return (
     <View style={styles.container}>
       <FlashList
         contentContainerStyle={styles.contentContainer}
-        data={[
-          { role: "user", content: "Hi Duck Ai" },
-          { role: "assistant", content: "Welcome to Duck Ai" },
-        ]}
+        data={currentChat ? currentChat.messages : []}
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
         ItemSeparatorComponent={itemSeparator}
@@ -41,7 +47,6 @@ const styles = StyleSheet.create({
   contentContainer: {
     paddingBottom: rh(50),
     paddingTop: rh(50),
-    // paddingHorizontal: rw(34),
     paddingHorizontal: rw(20),
   },
   itemSeparator: {

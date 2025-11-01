@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   },
 
   sectionOne: {
-    flex: 0.5,
+    flex: 0.4,
     backgroundColor: Colors.secondaryBg,
     paddingHorizontal: rw(34),
     paddingVertical: rh(36),
@@ -38,10 +38,9 @@ const styles = StyleSheet.create({
     flex: 6,
   },
   sectionThree: {
-    flex: 0.4,
+    flex: 1.2,
     backgroundColor: Colors.secondaryBg,
     paddingHorizontal: rw(34),
-    paddingVertical: rh(20),
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",

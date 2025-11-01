@@ -13,6 +13,6 @@ export interface Message {
 }
 
 export interface currentChatType {
-  id: string;
+  id: number;
   messages: Message[];
 }
