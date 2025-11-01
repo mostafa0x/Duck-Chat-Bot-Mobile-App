@@ -13,6 +13,7 @@ export interface Message {
   role: role;
   content: string;
   status: status;
+  error?: string;
 }
 
 export interface currentChatType {

@@ -9,11 +9,13 @@ import { Icon } from "react-native-paper";
 
 function BtnSend() {
   const dispatch = useAppDispatch();
-  const { isLoadingChat } = useAppSelector((state) => state.AppReducer);
+  const { isLoadingChat, myMessage } = useAppSelector(
+    (state) => state.AppReducer
+  );
 
   const handlePress = useCallback(() => {
-    !isLoadingChat && handlerSendMessage(dispatch);
-  }, []);
+    !isLoadingChat && handlerSendMessage(dispatch, myMessage);
+  }, [myMessage]);
   return (
     <TouchableOpacity onPress={handlePress} style={styles.container}>
       {isLoadingChat ? (

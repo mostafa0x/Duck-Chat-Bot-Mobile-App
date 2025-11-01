@@ -3,6 +3,8 @@ import {
   sendMessage,
   setErrorMessage,
 } from "@/lib/store/AppSlice";
+import { Message } from "@/types/AppSliceType";
+import { ResMessageAi } from "@/types/ResMessageAi";
 import axios from "axios";
 
 async function talkingDuckAi(
@@ -10,6 +12,8 @@ async function talkingDuckAi(
   dispatch: any,
   messageId: number
 ) {
+  console.log(content);
+
   try {
     const res = await axios.post(
       `${process.env.EXPO_PUBLIC_API_URL}`,
@@ -19,7 +23,7 @@ async function talkingDuckAi(
   "messages": [
     {
       "role": "user",
-      "content": ${content}
+      "content": "${content}"
     }
   ]
 }
@@ -31,23 +35,36 @@ async function talkingDuckAi(
         },
       }
     );
-    console.log(res.data);
+    const data: ResMessageAi = res.data;
     dispatch(
       receiveMessage({
         id: Date.now(),
-        content: res.data.choices[0].message.content,
+        content: data.choices[0].message.content,
       })
     );
     return res.data;
   } catch (err: any) {
-    console.log(err);
-    dispatch(setErrorMessage(messageId));
-    throw err;
+    const code = err.response?.data.error.code;
+    const errorTxt =
+      code === 429 ? "Rate limit exceeded" : "Connection problem";
+    dispatch(setErrorMessage({ id: messageId, error: errorTxt }));
+    throw errorTxt;
   }
 }
 
-export default function handlerSendMessage(dispatch: any) {
+export default async function handlerSendMessage(
+  dispatch: any,
+  content: string,
+  message?: Message
+) {
   const messageId = Date.now();
-  dispatch(sendMessage(messageId));
-  talkingDuckAi("hi all how ", dispatch, messageId);
+  message
+    ? dispatch(sendMessage({ id: messageId, message: message }))
+    : dispatch(sendMessage({ id: messageId }));
+  try {
+    await talkingDuckAi(content, dispatch, messageId);
+    return "";
+  } catch (err: any) {
+    throw err;
+  }
 }

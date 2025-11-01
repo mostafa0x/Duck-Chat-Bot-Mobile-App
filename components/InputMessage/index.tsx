@@ -13,8 +13,8 @@ function InputMessage() {
   );
 
   const handlePress = useCallback(() => {
-    !isLoadingChat && handlerSendMessage(dispatch);
-  }, []);
+    !isLoadingChat && handlerSendMessage(dispatch, myMessage);
+  }, [myMessage]);
 
   return (
     <View style={styles.container}>
