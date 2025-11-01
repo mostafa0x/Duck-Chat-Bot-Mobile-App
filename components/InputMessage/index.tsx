@@ -1,6 +1,7 @@
 import { Colors, Fonts } from "@/constants/theme";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
-import { sendMessage, setMyMessage } from "@/lib/store/AppSlice";
+import { setMyMessage } from "@/lib/store/AppSlice";
+import handlerSendMessage from "@/services/handlerSendMessage";
 import { rf, rh, rw } from "@/utils/dimensions";
 import React, { memo, useCallback } from "react";
 import { StyleSheet, TextInput, View } from "react-native";
@@ -12,7 +13,7 @@ function InputMessage() {
   );
 
   const handlePress = useCallback(() => {
-    !isLoadingChat && dispatch(sendMessage());
+    !isLoadingChat && handlerSendMessage(dispatch);
   }, []);
 
   return (

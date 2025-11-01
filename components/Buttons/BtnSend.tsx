@@ -1,6 +1,6 @@
 import { Colors } from "@/constants/theme";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
-import { sendMessage } from "@/lib/store/AppSlice";
+import handlerSendMessage from "@/services/handlerSendMessage";
 import { rf, rw } from "@/utils/dimensions";
 import React, { memo, useCallback } from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
@@ -12,12 +12,12 @@ function BtnSend() {
   const { isLoadingChat } = useAppSelector((state) => state.AppReducer);
 
   const handlePress = useCallback(() => {
-    !isLoadingChat && dispatch(sendMessage());
+    !isLoadingChat && handlerSendMessage(dispatch);
   }, []);
   return (
     <TouchableOpacity onPress={handlePress} style={styles.container}>
       {isLoadingChat ? (
-        <BarIndicator color="#fff" size={rf(36)} />
+        <BarIndicator color="#fff" size={rf(36)} key={"loader-btn"} />
       ) : (
         <Icon source={"send"} color="#fff" size={rf(36)} />
       )}

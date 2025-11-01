@@ -10,7 +10,7 @@ function ListFooter({ isLoading }: { isLoading: boolean }) {
         <Logo size={32} />
       </View>
       <View style={styles.loader}>
-        <BarIndicator color="#fff" size={rf(36)} />
+        <BarIndicator color="#fff" size={rf(36)} key={"loader-footer"} />
       </View>
     </View>
   ) : null;

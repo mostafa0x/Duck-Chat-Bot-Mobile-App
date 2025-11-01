@@ -1,7 +1,6 @@
 import Appbar from "@/components/Appbar";
-import BtnSend from "@/components/Buttons/BtnSend";
 import ChatList from "@/components/ChatList";
-import InputMessage from "@/components/InputMessage";
+import SectionThree from "@/components/Sections/SectionThree";
 import { Colors } from "@/constants/theme";
 import { rh, rw } from "@/utils/dimensions";
 import React from "react";
@@ -15,10 +14,7 @@ export default function HomeScreen() {
       <View style={styles.sectionTwo}>
         <ChatList />
       </View>
-      <View style={styles.sectionThree}>
-        <InputMessage />
-        <BtnSend />
-      </View>
+      <SectionThree />
     </View>
   );
 }
