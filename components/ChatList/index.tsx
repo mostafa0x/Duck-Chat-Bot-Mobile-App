@@ -1,4 +1,5 @@
-import { rh } from "@/utils/dimensions";
+import { Message } from "@/types/AppSliceType";
+import { rh, rw } from "@/utils/dimensions";
 import { FlashList } from "@shopify/flash-list";
 import React, { useCallback } from "react";
 import { StyleSheet, View } from "react-native";
@@ -6,8 +7,8 @@ import Item_ChatList from "./Item";
 import ListHeader from "./ListHeader";
 
 export default function ChatList() {
-  const renderItem = useCallback(() => {
-    return <Item_ChatList />;
+  const renderItem = useCallback(({ item }: { item: Message }) => {
+    return <Item_ChatList message={item} />;
   }, []);
 
   const itemSeparator = useCallback(() => {
@@ -18,7 +19,10 @@ export default function ChatList() {
     <View style={styles.container}>
       <FlashList
         contentContainerStyle={styles.contentContainer}
-        data={Array(50)}
+        data={[
+          { role: "user", content: "Hi Duck Ai" },
+          { role: "assistant", content: "Welcome to Duck Ai" },
+        ]}
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
         ItemSeparatorComponent={itemSeparator}
@@ -37,6 +41,8 @@ const styles = StyleSheet.create({
   contentContainer: {
     paddingBottom: rh(50),
     paddingTop: rh(50),
+    // paddingHorizontal: rw(34),
+    paddingHorizontal: rw(20),
   },
   itemSeparator: {
     height: rh(20),

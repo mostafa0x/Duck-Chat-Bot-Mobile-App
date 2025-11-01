@@ -14,4 +14,5 @@ export const Colors = {
   primaryButton: "#324EFF",
   secondaryButton: "#29374F",
   thirdButton: "#314568ff",
+  messageBg: "#324EFF",
 };
