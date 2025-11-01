@@ -3,13 +3,15 @@ export interface AppSliceType {
   history: currentChatType[];
   myRole: role;
   myMessage: string;
+  isLoadingChat: boolean;
 }
 
 export type role = "assistant" | "user";
-
+export type status = "loading" | "success" | "error";
 export interface Message {
   role: role;
   content: string;
+  status: status;
 }
 
 export interface currentChatType {

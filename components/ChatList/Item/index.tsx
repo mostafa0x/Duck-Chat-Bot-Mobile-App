@@ -8,16 +8,23 @@ import { StyleSheet, Text, View } from "react-native";
 function Item_ChatList({ message }: { message: Message }) {
   const MyMessage = message?.role === "user" ? true : false;
   return (
-    <View style={[styles.wrapperContainer, !MyMessage && styles.spacing]}>
-      {!MyMessage && (
-        <View style={styles.iconContainer}>
-          <Logo size={32} />
+    <>
+      <View style={[styles.wrapperContainer, !MyMessage && styles.spacing]}>
+        {!MyMessage && (
+          <View style={styles.iconContainer}>
+            <Logo size={32} />
+          </View>
+        )}
+        <View style={[styles.container, MyMessage && styles.myMessage]}>
+          <Text style={styles.messageLabel}>{message.content}</Text>
+        </View>
+      </View>
+      {message.status === "error" && (
+        <View style={styles.errorContainer}>
+          <Text style={styles.errorLabel}>Error</Text>
         </View>
       )}
-      <View style={[styles.container, MyMessage && styles.myMessage]}>
-        <Text style={styles.messageLabel}>{message.content}</Text>
-      </View>
-    </View>
+    </>
   );
 }
 
@@ -49,6 +56,14 @@ const styles = StyleSheet.create({
     fontSize: rf(16),
     color: Colors.primaryText,
     width: "100%",
+  },
+  errorContainer: {
+    marginTop: rh(10),
+  },
+  errorLabel: {
+    fontFamily: Fonts.RobotoRegular,
+    fontSize: rf(16),
+    color: Colors.primaryText,
   },
 });
 

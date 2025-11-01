@@ -1,4 +1,4 @@
-import { AppSliceType } from "@/types/AppSliceType";
+import { AppSliceType, Message } from "@/types/AppSliceType";
 import { createSlice } from "@reduxjs/toolkit";
 [
   { role: "user", content: "Hi Duck Ai" },
@@ -11,6 +11,7 @@ const initialState: AppSliceType = {
   history: [],
   myRole: "user",
   myMessage: "",
+  isLoadingChat: false,
 };
 
 const AppSlice = createSlice({
@@ -26,8 +27,22 @@ const AppSlice = createSlice({
     setMyMessage: (state, action) => {
       state.myMessage = action.payload;
     },
+    sendMessage: (state) => {
+      const isLoading = state.isLoadingChat;
+      if (isLoading) return;
+      const myMessage: Message = {
+        content: state.myMessage,
+        role: state.myRole,
+        status: "loading",
+      };
+      if (state.currentChat) {
+        state.currentChat?.messages.push(myMessage);
+        state.myMessage = "";
+        state.isLoadingChat = true;
+      }
+    },
   },
 });
 
 export const AppReducer = AppSlice.reducer;
-export const { setCurrentChat, setMyMessage } = AppSlice.actions;
+export const { setCurrentChat, setMyMessage, sendMessage } = AppSlice.actions;

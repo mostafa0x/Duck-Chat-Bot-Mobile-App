@@ -6,11 +6,14 @@ import { FlashList } from "@shopify/flash-list";
 import React, { useCallback, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 import Item_ChatList from "./Item";
+import ListFooter from "./ListFooter";
 import ListHeader from "./ListHeader";
 
 export default function ChatList() {
   const dispatch = useAppDispatch();
-  const { currentChat } = useAppSelector((state) => state.AppReducer);
+  const { currentChat, isLoadingChat } = useAppSelector(
+    (state) => state.AppReducer
+  );
   const renderItem = useCallback(({ item }: { item: Message }) => {
     return <Item_ChatList message={item} />;
   }, []);
@@ -34,6 +37,7 @@ export default function ChatList() {
         ItemSeparatorComponent={itemSeparator}
         numColumns={1}
         ListHeaderComponent={<ListHeader />}
+        ListFooterComponent={<ListFooter isLoading={isLoadingChat} />}
       />
     </View>
   );
