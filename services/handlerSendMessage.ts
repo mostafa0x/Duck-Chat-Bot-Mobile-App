@@ -12,22 +12,18 @@ async function talkingDuckAi(
   dispatch: any,
   messageId: number
 ) {
-  console.log(content);
-
   try {
     const res = await axios.post(
       `${process.env.EXPO_PUBLIC_API_URL}`,
-      `
       {
-  "model": "mistralai/mistral-7b-instruct:free",
-  "messages": [
-    {
-      "role": "user",
-      "content": "${content}"
-    }
-  ]
-}
-`,
+        model: "openai/gpt-4o-mini",
+        messages: [
+          {
+            role: "user",
+            content: content.toString(),
+          },
+        ],
+      },
       {
         headers: {
           "Content-Type": "application/json",
@@ -35,16 +31,25 @@ async function talkingDuckAi(
         },
       }
     );
+
     const data: ResMessageAi = res.data;
+
+    let text = data.choices?.[0]?.message?.content ?? "";
+
+    console.log(text);
+
     dispatch(
       receiveMessage({
         id: Date.now(),
-        content: data.choices[0].message.content,
+        content: text,
       })
     );
+
     return res.data;
   } catch (err: any) {
-    const code = err.response?.data.error.code;
+    console.log(err.response?.data);
+
+    const code = err.response?.data?.error?.code;
     const errorTxt =
       code === 429 ? "Rate limit exceeded" : "Connection problem";
     dispatch(setErrorMessage({ id: messageId, error: errorTxt }));
