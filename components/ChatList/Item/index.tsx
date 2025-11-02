@@ -21,7 +21,7 @@ function Item_ChatList({ message }: { message: Message }) {
   }, [message]);
 
   const handleSelect = useCallback(() => {
-    router.push({ pathname: "/Selection", params: { messageId: message.id } });
+    router.push({ pathname: "/Selection", params: { messId: message.id } });
   }, []);
 
   useEffect(() => {
