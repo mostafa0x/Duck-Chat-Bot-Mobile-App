@@ -9,7 +9,7 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.sectionOne}>
-        <Appbar />
+        <Appbar from="home" />
       </View>
       <View style={styles.sectionTwo}>
         <ChatList />

@@ -1,10 +1,10 @@
 import { Colors } from "@/constants/theme";
 import { handlerBack } from "@/services/handlerBack";
-import { rf } from "@/utils/dimensions";
+import { rf, rh, rw } from "@/utils/dimensions";
 import { usePathname, useRouter } from "expo-router";
 import React, { memo } from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
-import { Icon } from "react-native-paper";
+import ArrowLeftIcon from "../icons/ArrowLeftIcon";
 function BtnBack() {
   const router = useRouter();
   const pathName = usePathname();
@@ -13,7 +13,7 @@ function BtnBack() {
       onPress={() => handlerBack(router, pathName)}
       style={styles.container}
     >
-      <Icon size={rf(30)} source={"less-than"} color="#fff" />
+      <ArrowLeftIcon />
     </TouchableOpacity>
   );
 }
@@ -26,6 +26,8 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.thirdButton,
     justifyContent: "center",
     alignItems: "center",
+    paddingLeft: rw(6),
+    paddingTop: rh(2),
   },
 });
 

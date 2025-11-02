@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
-
     backgroundColor: Colors.thirdButton,
     borderRadius: rf(99),
     paddingTop: rh(5),

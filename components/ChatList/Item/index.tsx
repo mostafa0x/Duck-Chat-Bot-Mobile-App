@@ -5,18 +5,24 @@ import { retryErrorMessage } from "@/lib/store/AppSlice";
 import handlerSendMessage from "@/services/handlerSendMessage";
 import { Message } from "@/types/AppSliceType";
 import { rf, rh, rw } from "@/utils/dimensions";
+import { useRouter } from "expo-router";
 import React, { memo, useCallback, useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Button } from "react-native-paper";
 
 function Item_ChatList({ message }: { message: Message }) {
   const dispatch = useAppDispatch();
+  const router = useRouter();
   const MyMessage = message?.role === "user" ? true : false;
 
   const handlerRetry = useCallback(async () => {
     dispatch(retryErrorMessage(message.id));
     await handlerSendMessage(dispatch, message.content, message);
   }, [message]);
+
+  const handleSelect = useCallback(() => {
+    router.push({ pathname: "/Selection", params: { messageId: message.id } });
+  }, []);
 
   useEffect(() => {
     return () => {};
@@ -30,9 +36,13 @@ function Item_ChatList({ message }: { message: Message }) {
             <Logo size={32} />
           </View>
         )}
-        <View style={[styles.container, MyMessage && styles.myMessage]}>
+        <TouchableOpacity
+          disabled={MyMessage}
+          onLongPress={handleSelect}
+          style={[styles.container, MyMessage && styles.myMessage]}
+        >
           <Text style={styles.messageLabel}>{message.content}</Text>
-        </View>
+        </TouchableOpacity>
       </View>
       {message.status === "error" && (
         <View style={styles.errorContainer}>
