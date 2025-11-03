@@ -48,6 +48,12 @@ const AppSlice = createSlice({
         status: "loading",
       };
       if (state.currentChat) {
+        if (state.currentChat.messages.length <= 0) {
+          state.currentChat.name = myMessage.content
+            .split(" ")
+            .slice(0, 10)
+            .join(" ");
+        }
         state.currentChat?.messages.push(myMessage);
         state.myMessage = "";
         state.isLoadingChat = true;

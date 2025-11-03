@@ -39,6 +39,16 @@ function Appbar({
           />
         </TouchableOpacity>
       )}
+      {inHistory && (
+        <TouchableOpacity style={styles.rightSide}>
+          <Text style={styles.newLabel}>New Chat</Text>
+          <Icon
+            size={rf(28)}
+            source={"open-in-new"}
+            color={Colors.primaryText}
+          />
+        </TouchableOpacity>
+      )}
     </View>
   );
 }
@@ -61,6 +71,12 @@ const styles = StyleSheet.create({
   rightSide: {
     flexDirection: "row",
     alignItems: "center",
+    gap: rw(5),
+  },
+  newLabel: {
+    color: Colors.primaryText,
+    fontFamily: Fonts.RobotoRegular,
+    fontSize: rf(14),
   },
 });
 

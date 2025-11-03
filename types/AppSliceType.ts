@@ -18,5 +18,6 @@ export interface Message {
 
 export interface currentChatType {
   id: number;
+  name?: string;
   messages: Message[];
 }
