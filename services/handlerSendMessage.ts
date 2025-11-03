@@ -7,12 +7,23 @@ import { Message } from "@/types/AppSliceType";
 import { ResMessageAi } from "@/types/ResMessageAi";
 import axios from "axios";
 
+let currentController: AbortController | null = null;
+
+export function CancelRequest() {
+  if (currentController) {
+    currentController.abort();
+    currentController = null;
+  }
+}
+
 async function talkingDuckAi(
   content: string,
   dispatch: any,
   messageId: number
 ) {
   try {
+    currentController = new AbortController();
+
     const res = await axios.post(
       `${process.env.EXPO_PUBLIC_API_URL}`,
       {
@@ -29,14 +40,14 @@ async function talkingDuckAi(
           "Content-Type": "application/json",
           Authorization: `Bearer ${process.env.EXPO_PUBLIC_API_KEY}`,
         },
+        signal: currentController.signal,
       }
     );
 
     const data: ResMessageAi = res.data;
+    const text = data.choices?.[0]?.message?.content ?? "";
 
-    let text = data.choices?.[0]?.message?.content ?? "";
-
-    console.log(text);
+    console.log("Response:", text);
 
     dispatch(
       receiveMessage({
@@ -45,8 +56,20 @@ async function talkingDuckAi(
       })
     );
 
-    return res.data;
+    currentController = null;
+    return data;
   } catch (err: any) {
+    if (axios.isCancel(err) || err.name === "CanceledError") {
+      dispatch(
+        setErrorMessage({
+          id: messageId,
+          error: "The request was canceled by the user.",
+        })
+      );
+
+      return;
+    }
+
     console.log(err.response?.data);
 
     const code = err.response?.data?.error?.code;
@@ -66,6 +89,7 @@ export default async function handlerSendMessage(
   message
     ? dispatch(sendMessage({ id: messageId, message: message }))
     : dispatch(sendMessage({ id: messageId }));
+
   try {
     await talkingDuckAi(content, dispatch, messageId);
     return "";

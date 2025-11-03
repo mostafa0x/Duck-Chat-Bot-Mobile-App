@@ -1,10 +1,11 @@
 import { Colors } from "@/constants/theme";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
-import handlerSendMessage from "@/services/handlerSendMessage";
+import handlerSendMessage, {
+  CancelRequest,
+} from "@/services/handlerSendMessage";
 import { rf, rw } from "@/utils/dimensions";
 import React, { memo, useCallback } from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
-import { BarIndicator } from "react-native-indicators";
 import { Icon } from "react-native-paper";
 
 function BtnSend() {
@@ -16,13 +17,13 @@ function BtnSend() {
   const handlePress = useCallback(() => {
     !isLoadingChat && handlerSendMessage(dispatch, myMessage);
   }, [myMessage]);
-  return (
+  return isLoadingChat ? (
+    <TouchableOpacity onPress={CancelRequest} style={styles.container}>
+      <Icon source={"stop"} color="#fff" size={rf(36)} />
+    </TouchableOpacity>
+  ) : (
     <TouchableOpacity onPress={handlePress} style={styles.container}>
-      {isLoadingChat ? (
-        <BarIndicator color="#fff" size={rf(36)} key={"loader-btn"} />
-      ) : (
-        <Icon source={"send"} color="#fff" size={rf(36)} />
-      )}
+      <Icon source={"send"} color="#fff" size={rf(36)} />
     </TouchableOpacity>
   );
 }
