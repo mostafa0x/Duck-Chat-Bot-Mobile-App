@@ -11,11 +11,14 @@ function Appbar({
   from,
   CopyAll,
 }: {
-  from: "home" | "selection";
+  from: "home" | "selection" | "history";
   CopyAll?: () => Promise<void>;
 }) {
   const inHome = from === "home";
-  const title = inHome ? "Duck AI" : "Text Selection";
+  const inSelection = from === "selection";
+  const inHistory = from === "history";
+
+  const title = inHome ? "Duck AI" : inSelection ? "Text Selection" : "History";
   return (
     <View style={styles.container}>
       <View style={styles.leftSide}>
@@ -27,7 +30,7 @@ function Appbar({
           <BtnHistory />
         </View>
       )}
-      {!inHome && (
+      {inSelection && (
         <TouchableOpacity onPress={CopyAll} style={styles.rightSide}>
           <Icon
             size={rf(30)}

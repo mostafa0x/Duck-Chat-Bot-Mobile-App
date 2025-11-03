@@ -10,7 +10,6 @@ import {
   Platform,
   ScrollView,
   StyleSheet,
-  Text,
   TextInput,
   View,
 } from "react-native";
@@ -23,6 +22,8 @@ export default function SelectionScreen() {
   const currentMessage = currentChat?.messages.find(
     (message) => message.id === Number(messageId)
   );
+
+  console.log(currentMessage);
 
   const content = currentMessage?.content ?? "";
 
@@ -55,9 +56,13 @@ export default function SelectionScreen() {
                 />
               </View>
             ) : (
-              <Text key={index} style={styles.normalText}>
-                {part.trim()}
-              </Text>
+              <TextInput
+                multiline
+                key={index}
+                style={styles.normalText}
+                value={part.trim()}
+                selectionColor={Colors.messageBg}
+              />
             );
           })}
         </View>
