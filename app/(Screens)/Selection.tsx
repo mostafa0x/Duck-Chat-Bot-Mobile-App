@@ -3,8 +3,9 @@ import CopyCodeSection from "@/components/CopyCodeSection";
 import { Colors, Fonts } from "@/constants/theme";
 import { useAppSelector } from "@/hooks/useRedux";
 import { rf, rh, rw } from "@/utils/dimensions";
+import * as Clipboard from "expo-clipboard";
 import { useLocalSearchParams } from "expo-router";
-import React from "react";
+import React, { useCallback } from "react";
 import {
   Platform,
   ScrollView,
@@ -27,10 +28,14 @@ export default function SelectionScreen() {
 
   const parts = content.split(/```([\s\S]*?)```/g);
 
+  const CopyAll = useCallback(async () => {
+    await Clipboard.setStringAsync(content);
+  }, [content]);
+
   return (
     <>
       <View style={styles.appbarContainer}>
-        <Appbar from="selection" />
+        <Appbar from="selection" CopyAll={CopyAll} />
       </View>
 
       <ScrollView

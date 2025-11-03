@@ -1,12 +1,19 @@
 import { Colors, Fonts } from "@/constants/theme";
 import { rf, rw } from "@/utils/dimensions";
 import React, { memo } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Icon } from "react-native-paper";
 import BtnBack from "../Buttons/BtnBack";
 import BtnHistory from "../Buttons/BtnHistory";
 import Logo from "../Logo";
 
-function Appbar({ from }: { from: "home" | "selection" }) {
+function Appbar({
+  from,
+  CopyAll,
+}: {
+  from: "home" | "selection";
+  CopyAll?: () => Promise<void>;
+}) {
   const inHome = from === "home";
   const title = inHome ? "Duck AI" : "Text Selection";
   return (
@@ -19,6 +26,15 @@ function Appbar({ from }: { from: "home" | "selection" }) {
         <View style={styles.rightSide}>
           <BtnHistory />
         </View>
+      )}
+      {!inHome && (
+        <TouchableOpacity onPress={CopyAll} style={styles.rightSide}>
+          <Icon
+            size={rf(30)}
+            source={"content-copy"}
+            color={Colors.primaryText}
+          />
+        </TouchableOpacity>
       )}
     </View>
   );
