@@ -4,7 +4,7 @@ import { Colors, Fonts } from "@/constants/theme";
 import { useAppSelector } from "@/hooks/useRedux";
 import { rf, rh, rw } from "@/utils/dimensions";
 import { useLocalSearchParams } from "expo-router";
-import React, { useState } from "react";
+import React from "react";
 import {
   Platform,
   ScrollView,
@@ -17,7 +17,6 @@ import {
 export default function SelectionScreen() {
   const { messId } = useLocalSearchParams();
   const messageId = Array.isArray(messId) ? messId[0] : messId;
-  const [height, setHeight] = useState(100);
   const { currentChat } = useAppSelector((state) => state.AppReducer);
 
   const currentMessage = currentChat?.messages.find(
@@ -25,7 +24,6 @@ export default function SelectionScreen() {
   );
 
   const content = currentMessage?.content ?? "";
-  console.log(currentMessage);
 
   const parts = content.split(/```([\s\S]*?)```/g);
 
@@ -41,21 +39,14 @@ export default function SelectionScreen() {
       >
         <View style={styles.outputContainer}>
           {parts.map((part, index) => {
-            const isCode = content.includes("```" + part + "```");
+            const isCode = index % 2 === 1; // 👈 فردي = كود
             return isCode ? (
               <View key={index} style={styles.codeBlock}>
-                <CopyCodeSection />
+                <CopyCodeSection code={part.trim()} />
                 <TextInput
-                  style={[styles.textArea, { height }]}
                   multiline
-                  onContentSizeChange={(e) =>
-                    setHeight(e.nativeEvent.contentSize.height)
-                  }
-                  placeholder="Wait for response..."
-                  placeholderTextColor={Colors.secondaryText}
-                  textAlignVertical="top"
+                  style={styles.codeText}
                   value={part.trim()}
-                  selectionColor={Colors.primaryButton}
                 />
               </View>
             ) : (
@@ -78,12 +69,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: rw(34),
     paddingVertical: rh(36),
     backgroundColor: Colors.secondaryBg,
-  },
-  textArea: {
-    height: rh(150),
-    fontSize: rf(16),
-    fontFamily: Fonts.RobotoRegular,
-    color: Colors.primaryText,
   },
   contentContainer: {
     flexGrow: 1,

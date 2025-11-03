@@ -1,12 +1,17 @@
 import { Colors, Fonts } from "@/constants/theme";
 import { rf, rh, rw } from "@/utils/dimensions";
-import React from "react";
+import * as Clipboard from "expo-clipboard";
+import React, { useCallback } from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import { Icon } from "react-native-paper";
 
-export default function CopyCodeSection() {
+export default function CopyCodeSection({ code }: { code: string }) {
+  const copyToClipboard = useCallback(async () => {
+    await Clipboard.setStringAsync(code);
+  }, [code]);
+
   return (
-    <TouchableOpacity style={styles.copyContainer}>
+    <TouchableOpacity onPress={copyToClipboard} style={styles.copyContainer}>
       <Text style={styles.copyLabel}>Copy Code</Text>
       <Icon size={rf(20)} source={"content-copy"} color={Colors.primaryText} />
     </TouchableOpacity>
