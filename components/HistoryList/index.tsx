@@ -1,5 +1,4 @@
 import { Colors, Fonts } from "@/constants/theme";
-import { useAppSelector } from "@/hooks/useRedux";
 import { currentChatType } from "@/types/AppSliceType";
 import { rh, rw } from "@/utils/dimensions";
 import { FlashList } from "@shopify/flash-list";
@@ -7,8 +6,7 @@ import React, { useCallback } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import HistoryList_Item from "./Item";
 
-export default function HistoryList() {
-  const { history } = useAppSelector((state) => state.AppReducer);
+export default function HistoryList({ data }: { data: currentChatType[] }) {
   const renderItem = useCallback(({ item }: { item: currentChatType }) => {
     return <HistoryList_Item item={item} />;
   }, []);
@@ -30,7 +28,7 @@ export default function HistoryList() {
   return (
     <View style={styles.container}>
       <FlashList
-        data={history}
+        data={data}
         renderItem={renderItem}
         keyExtractor={(item, index) => String(item.id ? item.id : index)}
         contentContainerStyle={styles.contentContainer}

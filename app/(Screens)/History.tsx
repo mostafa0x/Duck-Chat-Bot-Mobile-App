@@ -8,13 +8,14 @@ import { StyleSheet, Text, View } from "react-native";
 
 export default function HistoryScreen() {
   const { currentChat, history } = useAppSelector((state) => state.AppReducer);
+
   return (
     <>
       <View style={styles.appbarContainer}>
         <Appbar from="history" />
       </View>
       <View style={styles.container}>
-        <HistoryList />
+        <HistoryList data={history} />
         <Text style={{ color: "#fff" }}>{currentChat?.name}</Text>
       </View>
     </>

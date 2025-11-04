@@ -26,24 +26,22 @@ export const setHistory = createAsyncThunk<
   }
 
   const curr = history.findIndex((message) => message.id === current.id);
-  let willSave: currentChatType[] = [];
+  let newHistory = [...history];
 
   if (curr !== -1) {
-    const newHistory = [...history];
     newHistory[curr] = current;
-    willSave = newHistory;
   } else {
-    willSave = [current, ...history];
+    newHistory = [current, ...history];
   }
 
   try {
-    await setData(willSave);
+    await setData(newHistory);
   } catch (err) {
     console.error("Error saving history:", err);
     return [];
   }
 
-  return willSave;
+  return newHistory;
 });
 
 export const getHistory = createAsyncThunk<currentChatType[]>(
