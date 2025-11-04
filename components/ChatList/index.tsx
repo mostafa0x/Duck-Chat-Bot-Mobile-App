@@ -33,7 +33,7 @@ function ChatList() {
 
   useEffect(() => {
     if (listRef.current) {
-      listRef.current.scrollToEnd();
+      listRef.current.scrollToEnd({ animated: false });
     }
     return () => {};
   }, [currentChat?.messages]);

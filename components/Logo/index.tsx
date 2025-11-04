@@ -16,6 +16,7 @@ function Logo({ size = 64 }: { size: number }) {
       ]}
     >
       <Image
+        cachePolicy={"memory-disk"}
         style={{
           width: rw(size),
           height: rh(size),

@@ -5,7 +5,7 @@ import { Colors } from "@/constants/theme";
 import { Message } from "@/types/AppSliceType";
 import { rh, rw } from "@/utils/dimensions";
 import { useRouter } from "expo-router";
-import React, { memo, useCallback } from "react";
+import React, { memo, useCallback, useMemo } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 
 function Item_ChatList({ message }: { message: Message }) {
@@ -16,7 +16,10 @@ function Item_ChatList({ message }: { message: Message }) {
     router.push({ pathname: "/Selection", params: { messId: message.id } });
   }, []);
 
-  const parts = message.content?.split(/```([\s\S]*?)```/g) ?? [];
+  const parts = useMemo(
+    () => message.content?.split(/```([\s\S]*?)```/g) ?? [],
+    [message]
+  );
 
   return (
     <>

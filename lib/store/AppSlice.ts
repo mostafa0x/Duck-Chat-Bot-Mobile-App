@@ -1,6 +1,7 @@
 import { getData, setData } from "@/services/Storage";
 import { AppSliceType, currentChatType, Message } from "@/types/AppSliceType";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { SplashScreen } from "expo-router";
 import { RootState } from ".";
 
 const initialState: AppSliceType = {
@@ -48,6 +49,7 @@ export const getHistory = createAsyncThunk<currentChatType[]>(
   "AppSlice/getHistory",
   async () => {
     try {
+      SplashScreen.hide();
       return await getData();
     } catch (err) {
       return [];

@@ -7,7 +7,7 @@ import { Icon } from "react-native-paper";
 export default function BtnHistory() {
   const router = useRouter();
   const handlePress = useCallback(() => {
-    router.push("/History");
+    router.navigate("/History");
   }, []);
   return (
     <TouchableOpacity onPress={handlePress}>
