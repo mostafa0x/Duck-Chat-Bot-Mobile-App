@@ -6,6 +6,7 @@ import {
 import { Message } from "@/types/AppSliceType";
 import { ResMessageAi } from "@/types/ResMessageAi";
 import axios from "axios";
+import { setHistory } from "./../lib/store/AppSlice";
 
 let currentController: AbortController | null = null;
 
@@ -77,6 +78,8 @@ async function talkingDuckAi(
       code === 429 ? "Rate limit exceeded" : "Connection problem";
     dispatch(setErrorMessage({ id: messageId, error: errorTxt }));
     throw errorTxt;
+  } finally {
+    dispatch(setHistory());
   }
 }
 

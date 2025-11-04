@@ -1,11 +1,8 @@
-import { AppSliceType, Message } from "@/types/AppSliceType";
-import { createSlice } from "@reduxjs/toolkit";
-[
-  { role: "user", content: "Hi Duck Ai" },
-  { role: "assistant", content: "Welcome to Duck Ai" },
-  { role: "user", content: "Hi Duck Ai" },
-  { role: "assistant", content: "Welcome to Duck Ai" },
-];
+import { setData } from "@/services/Storage";
+import { AppSliceType, currentChatType, Message } from "@/types/AppSliceType";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { RootState } from ".";
+
 const initialState: AppSliceType = {
   currentChat: null,
   history: [],
@@ -13,6 +10,33 @@ const initialState: AppSliceType = {
   myMessage: "",
   isLoadingChat: false,
 };
+
+export const setHistory = createAsyncThunk<
+  currentChatType[],
+  void,
+  { state: RootState }
+>("AppSlice/setHistory", async (_, { getState }) => {
+  const state = getState();
+  const current = state.AppReducer.currentChat;
+  const history = state.AppReducer.history;
+  const curr = history.findIndex((message) => message.id === current?.id);
+  if (!current) return [];
+  console.log("xxx");
+
+  let willSave: currentChatType[] = [];
+  if (curr !== -1) {
+    history[curr] = current;
+    willSave = history;
+  } else {
+    willSave = [current, ...history];
+  }
+  try {
+    await setData(willSave);
+  } catch (err) {
+    return [];
+  }
+  return willSave;
+});
 
 const AppSlice = createSlice({
   name: "AppSlice",
@@ -103,6 +127,12 @@ const AppSlice = createSlice({
         state.isLoadingChat = false;
       }
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(setHistory.fulfilled, (state, action) => {
+      console.log(action.payload);
+      state.history = action.payload;
+    });
   },
 });
 
