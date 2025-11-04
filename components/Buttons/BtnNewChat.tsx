@@ -1,40 +1,37 @@
 import { Colors, Fonts } from "@/constants/theme";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { setCurrentChat } from "@/lib/store/AppSlice";
-import { currentChatType } from "@/types/AppSliceType";
-import { rw } from "@/utils/dimensions";
+import { rf, rw } from "@/utils/dimensions";
 import { useRouter } from "expo-router";
 import React, { useCallback } from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { Icon } from "react-native-paper";
 
-export default function HistoryList_Item({ item }: { item: currentChatType }) {
+export default function BtnNewChat() {
   const dispatch = useAppDispatch();
   const router = useRouter();
-
   const handlePress = useCallback(() => {
-    dispatch(setCurrentChat(item));
+    dispatch(setCurrentChat({ id: Date.now(), messages: [] }));
     router.push("/");
   }, []);
 
   return (
-    <TouchableOpacity onPress={handlePress} style={styles.container}>
-      <Text style={styles.titleName} numberOfLines={1}>
-        {item.name}
-      </Text>
+    <TouchableOpacity onPress={handlePress} style={styles.rightSide}>
+      <Text style={styles.newLabel}>New Chat</Text>
+      <Icon size={rf(28)} source={"open-in-new"} color={Colors.primaryText} />
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: Colors.thirdButton,
-    padding: rw(10),
-    borderRadius: rw(10),
-    flexShrink: 1,
+  rightSide: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: rw(5),
   },
-  titleName: {
+  newLabel: {
     color: Colors.primaryText,
-    fontSize: rw(14),
     fontFamily: Fonts.RobotoRegular,
+    fontSize: rf(14),
   },
 });

@@ -21,7 +21,6 @@ export const setHistory = createAsyncThunk<
   const history = state.AppReducer.history;
   const curr = history.findIndex((message) => message.id === current?.id);
   if (!current) return [];
-  console.log("xxx");
 
   let willSave: currentChatType[] = [];
   if (curr !== -1) {

@@ -48,7 +48,7 @@ async function talkingDuckAi(
     const data: ResMessageAi = res.data;
     const text = data.choices?.[0]?.message?.content ?? "";
 
-    console.log("Response:", text);
+    // console.log("Response:", text);
 
     dispatch(
       receiveMessage({
@@ -71,7 +71,7 @@ async function talkingDuckAi(
       return;
     }
 
-    console.log(err.response?.data);
+    // console.log(err.response?.data);
 
     const code = err.response?.data?.error?.code;
     const errorTxt =

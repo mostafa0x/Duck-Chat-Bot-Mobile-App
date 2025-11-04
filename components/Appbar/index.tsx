@@ -5,6 +5,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Icon } from "react-native-paper";
 import BtnBack from "../Buttons/BtnBack";
 import BtnHistory from "../Buttons/BtnHistory";
+import BtnNewChat from "../Buttons/BtnNewChat";
 import Logo from "../Logo";
 
 function Appbar({
@@ -39,16 +40,7 @@ function Appbar({
           />
         </TouchableOpacity>
       )}
-      {inHistory && (
-        <TouchableOpacity style={styles.rightSide}>
-          <Text style={styles.newLabel}>New Chat</Text>
-          <Icon
-            size={rf(28)}
-            source={"open-in-new"}
-            color={Colors.primaryText}
-          />
-        </TouchableOpacity>
-      )}
+      {inHistory && <BtnNewChat />}
     </View>
   );
 }
@@ -72,11 +64,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: rw(5),
-  },
-  newLabel: {
-    color: Colors.primaryText,
-    fontFamily: Fonts.RobotoRegular,
-    fontSize: rf(14),
   },
 });
 
