@@ -19,21 +19,30 @@ export const setHistory = createAsyncThunk<
   const state = getState();
   const current = state.AppReducer.currentChat;
   const history = state.AppReducer.history;
-  const curr = history.findIndex((message) => message.id === current?.id);
-  if (!current) return [];
 
+  if (!current) {
+    console.warn("No current chat found, skipping save.");
+    return [];
+  }
+
+  const curr = history.findIndex((message) => message.id === current.id);
   let willSave: currentChatType[] = [];
+
   if (curr !== -1) {
-    history[curr] = current;
-    willSave = history;
+    const newHistory = [...history];
+    newHistory[curr] = current;
+    willSave = newHistory;
   } else {
     willSave = [current, ...history];
   }
+
   try {
     await setData(willSave);
   } catch (err) {
+    console.error("Error saving history:", err);
     return [];
   }
+
   return willSave;
 });
 
