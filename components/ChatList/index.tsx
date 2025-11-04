@@ -3,13 +3,13 @@ import { setCurrentChat } from "@/lib/store/AppSlice";
 import { Message } from "@/types/AppSliceType";
 import { rh, rw } from "@/utils/dimensions";
 import { FlashList, FlashListRef } from "@shopify/flash-list";
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { memo, useCallback, useEffect, useRef } from "react";
 import { StyleSheet, View } from "react-native";
 import Item_ChatList from "./Item";
 import ListFooter from "./ListFooter";
 import ListHeader from "./ListHeader";
 
-export default function ChatList() {
+function ChatList() {
   const dispatch = useAppDispatch();
   const listRef = useRef<FlashListRef<Message> | null>(null);
   const { currentChat, isLoadingChat } = useAppSelector(
@@ -69,3 +69,5 @@ const styles = StyleSheet.create({
     height: rh(20),
   },
 });
+
+export default memo(ChatList);

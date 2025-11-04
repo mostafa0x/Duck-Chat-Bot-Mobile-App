@@ -4,10 +4,10 @@ import { setCurrentChat } from "@/lib/store/AppSlice";
 import { currentChatType } from "@/types/AppSliceType";
 import { rw } from "@/utils/dimensions";
 import { useRouter } from "expo-router";
-import React, { useCallback } from "react";
+import React, { memo, useCallback } from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
-export default function HistoryList_Item({ item }: { item: currentChatType }) {
+function HistoryList_Item({ item }: { item: currentChatType }) {
   const dispatch = useAppDispatch();
   const router = useRouter();
 
@@ -38,3 +38,5 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.RobotoRegular,
   },
 });
+
+export default memo(HistoryList_Item);

@@ -2,11 +2,11 @@ import { Colors, Fonts } from "@/constants/theme";
 import { currentChatType } from "@/types/AppSliceType";
 import { rh, rw } from "@/utils/dimensions";
 import { FlashList } from "@shopify/flash-list";
-import React, { useCallback } from "react";
+import React, { memo, useCallback } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import HistoryList_Item from "./Item";
 
-export default function HistoryList({ data }: { data: currentChatType[] }) {
+function HistoryList({ data }: { data: currentChatType[] }) {
   const renderItem = useCallback(({ item }: { item: currentChatType }) => {
     return <HistoryList_Item item={item} />;
   }, []);
@@ -63,3 +63,5 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 });
+
+export default memo(HistoryList);
