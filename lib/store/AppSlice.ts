@@ -1,4 +1,4 @@
-import { setData } from "@/services/Storage";
+import { getData, setData } from "@/services/Storage";
 import { AppSliceType, currentChatType, Message } from "@/types/AppSliceType";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { RootState } from ".";
@@ -37,6 +37,17 @@ export const setHistory = createAsyncThunk<
   }
   return willSave;
 });
+
+export const getHistory = createAsyncThunk<currentChatType[]>(
+  "AppSlice/getHistory",
+  async () => {
+    try {
+      return await getData();
+    } catch (err) {
+      return [];
+    }
+  }
+);
 
 const AppSlice = createSlice({
   name: "AppSlice",
@@ -130,7 +141,9 @@ const AppSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(setHistory.fulfilled, (state, action) => {
-      console.log(action.payload);
+      state.history = action.payload;
+    });
+    builder.addCase(getHistory.fulfilled, (state, action) => {
       state.history = action.payload;
     });
   },
