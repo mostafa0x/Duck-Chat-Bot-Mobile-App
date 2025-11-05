@@ -19,8 +19,8 @@ function HistoryList_Item({
   const active = item.id === currentChat?.id;
 
   const handlePress = useCallback(() => {
+    dispatch(setCurrentChat(item.id));
     router.navigate("/");
-    dispatch(setCurrentChat(item));
   }, [dispatch, item, router]);
 
   return (

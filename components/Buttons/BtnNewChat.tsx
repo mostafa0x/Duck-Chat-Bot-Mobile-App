@@ -11,7 +11,7 @@ export default function BtnNewChat() {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const handlePress = useCallback(() => {
-    dispatch(setCurrentChat({ id: Date.now(), messages: [] }));
+    dispatch(setCurrentChat(-1));
     router.navigate("/");
   }, []);
 

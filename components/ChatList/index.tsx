@@ -30,7 +30,7 @@ function ChatList() {
   }, []);
 
   useEffect(() => {
-    !currentChat && dispatch(setCurrentChat({ id: Date.now(), messages: [] }));
+    !currentChat && dispatch(setCurrentChat(-1));
     return () => {};
   }, []);
 

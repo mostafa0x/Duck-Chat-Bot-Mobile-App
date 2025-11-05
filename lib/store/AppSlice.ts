@@ -59,11 +59,14 @@ const AppSlice = createSlice({
   name: "AppSlice",
   initialState,
   reducers: {
-    setCurrentChat: (
-      state,
-      action: { payload: AppSliceType["currentChat"] }
-    ) => {
-      state.currentChat = action.payload;
+    setCurrentChat: (state, action: { payload: number }) => {
+      const chatId = action.payload;
+      if (chatId === -1) {
+        state.currentChat = { id: Date.now(), messages: [] };
+      } else {
+        const chat = state.history.find((chat) => chat.id === chatId);
+        state.currentChat = chat ? chat : null;
+      }
     },
     setMyMessage: (state, action) => {
       state.myMessage = action.payload;
