@@ -78,4 +78,6 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(Item_ChatList);
+export default memo(Item_ChatList, (prev, next) => {
+  return prev.message.id === next.message.id;
+});

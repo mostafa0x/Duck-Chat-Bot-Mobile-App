@@ -7,9 +7,16 @@ import { useRouter } from "expo-router";
 import React, { memo, useCallback } from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
-function HistoryList_Item({ item }: { item: currentChatType }) {
+function HistoryList_Item({
+  item,
+  currentChat,
+}: {
+  item: currentChatType;
+  currentChat: currentChatType | null;
+}) {
   const dispatch = useAppDispatch();
   const router = useRouter();
+  const active = item.id === currentChat?.id;
 
   const handlePress = useCallback(() => {
     dispatch(setCurrentChat(item));
@@ -17,7 +24,10 @@ function HistoryList_Item({ item }: { item: currentChatType }) {
   }, []);
 
   return (
-    <TouchableOpacity onPress={handlePress} style={styles.container}>
+    <TouchableOpacity
+      onPress={handlePress}
+      style={[styles.container, active && styles.activeBg]}
+    >
       <Text style={styles.titleName} numberOfLines={1}>
         {item.name}
       </Text>
@@ -32,6 +42,9 @@ const styles = StyleSheet.create({
     borderRadius: rw(10),
     flexShrink: 1,
   },
+  activeBg: {
+    backgroundColor: Colors.primaryButton,
+  },
   titleName: {
     color: Colors.primaryText,
     fontSize: rw(14),
@@ -39,4 +52,9 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(HistoryList_Item);
+export default memo(HistoryList_Item, (prev, next) => {
+  return (
+    prev.item.id === next.item.id &&
+    prev.currentChat?.id === next.currentChat?.id
+  );
+});

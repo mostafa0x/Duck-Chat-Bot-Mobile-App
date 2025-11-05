@@ -15,12 +15,9 @@ function ChatList() {
   const { currentChat, isLoadingChat } = useAppSelector(
     (state) => state.AppReducer
   );
-  const renderItem = useCallback(
-    ({ item, index }: { item: Message; index: number }) => {
-      return <Item_ChatList message={item} />;
-    },
-    []
-  );
+  const renderItem = useCallback(({ item }: { item: Message }) => {
+    return <Item_ChatList message={item} />;
+  }, []);
 
   const itemSeparator = useCallback(() => {
     return <View style={styles.itemSeparator}></View>;

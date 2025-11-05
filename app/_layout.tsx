@@ -34,20 +34,10 @@ export default function RootLayout({ children }: any) {
               screenOptions={{
                 headerShown: false,
                 contentStyle: { backgroundColor: Colors.primaryBg },
+                animation: "fade",
               }}
             />
-            {/* <Stack
-              screenOptions={{
-                headerShown: false,
-                contentStyle: { backgroundColor: Colors.primaryBg },
-              }}
-            /> */}
-            {/* <Stack
-              screenOptions={{
-                headerShown: false,
-                contentStyle: { backgroundColor: Colors.primaryBg },
-              }}
-            /> */}
+
             <StatusBar style="light" backgroundColor={Colors.secondaryBg} />
           </SafeAreaView>
         </SafeAreaProvider>

@@ -1,15 +1,11 @@
 import BtnSend from "@/components/Buttons/BtnSend";
 import InputMessage from "@/components/InputMessage";
 import { Colors } from "@/constants/theme";
-import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { rw } from "@/utils/dimensions";
-import React from "react";
+import React, { memo } from "react";
 import { StyleSheet, View } from "react-native";
 
-export default function SectionThree() {
-  const dispatch = useAppDispatch();
-  const { myMessage } = useAppSelector((state) => state.AppReducer);
-
+function SectionThree() {
   return (
     <View style={styles.sectionThree}>
       <InputMessage />
@@ -29,3 +25,5 @@ const styles = StyleSheet.create({
     gap: rw(20),
   },
 });
+
+export default memo(SectionThree);
