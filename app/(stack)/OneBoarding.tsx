@@ -9,21 +9,27 @@ export default function OnBoardingScreen() {
     <View style={styles.container}>
       <View style={styles.upperSection}>
         <Image
+          cachePolicy={"memory-disk"}
           style={styles.img}
-          source={require("@/assets/images/intro2.png")}
+          source={require("@/assets/images/intro1.png")}
         />
       </View>
       <View style={styles.lowerSection}>
         <View style={styles.txtContainer}>
-          <Text style={styles.mainLabel}>Welcome to Duck Ai</Text>
+          <Text style={styles.mainLabel}>Welcome to Duck AI</Text>
           <Text style={styles.secLabel}>
-            help you to make your life easier and more fun
+            Your smart assistant that makes every day simpler, smarter, and a
+            little more fun.
           </Text>
         </View>
+
         <View style={styles.btnContainer}>
-          <CustomButton label={"Next"} type={1} />
+          <CustomButton label={"Get Started"} type={1} />
           <Text style={styles.policyLabel}>
-            By Continuing , your agree to our Privacy Policy & Term Of Use
+            By continuing, you agree to our{" "}
+            <Text style={{ fontFamily: Fonts.RobotoBold }}>Privacy Policy</Text>{" "}
+            and{" "}
+            <Text style={{ fontFamily: Fonts.RobotoBold }}>Terms of Use</Text>.
           </Text>
         </View>
       </View>
@@ -45,12 +51,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.secondaryBg,
     paddingHorizontal: rw(34),
-    paddingVertical: rh(36),
+    paddingVertical: rh(50),
     justifyContent: "space-between",
   },
   img: {
-    width: rw(300),
-    height: rh(300),
+    width: rw(250),
+    height: rh(250),
   },
   txtContainer: {
     gap: rh(10),
@@ -64,7 +70,7 @@ const styles = StyleSheet.create({
     color: Colors.secondaryText,
     fontFamily: Fonts.RobotoRegular,
     fontSize: rf(16),
-    width: rw(230),
+    width: rw(330),
   },
   policyLabel: {
     color: Colors.secondaryText,

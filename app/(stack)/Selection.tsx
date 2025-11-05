@@ -23,8 +23,6 @@ export default function SelectionScreen() {
     (message) => message.id === Number(messageId)
   );
 
-  console.log(currentMessage);
-
   const content = currentMessage?.content ?? "";
 
   const parts = content.split(/```([\s\S]*?)```/g);

@@ -34,6 +34,7 @@ function HistoryList({ data }: { data: currentChatType[] }) {
         contentContainerStyle={styles.contentContainer}
         ItemSeparatorComponent={itemSeparator}
         ListEmptyComponent={listEmpty}
+        showsVerticalScrollIndicator={false}
       />
     </View>
   );

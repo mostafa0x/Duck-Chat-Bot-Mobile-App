@@ -45,11 +45,12 @@ function ChatList() {
         contentContainerStyle={styles.contentContainer}
         data={currentChat ? currentChat.messages : []}
         renderItem={renderItem}
-        keyExtractor={(item, index) => item?.id.toString()}
+        keyExtractor={(item) => item?.id.toString()}
         ItemSeparatorComponent={itemSeparator}
         numColumns={1}
         ListHeaderComponent={<ListHeader />}
         ListFooterComponent={<ListFooter isLoading={isLoadingChat} />}
+        showsVerticalScrollIndicator={false}
       />
     </View>
   );

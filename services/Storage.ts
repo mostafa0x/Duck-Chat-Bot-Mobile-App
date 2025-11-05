@@ -4,19 +4,17 @@ export async function setData(data: currentChatType[]) {
   try {
     return await AsyncStorage.setItem("history", JSON.stringify(data));
   } catch (error) {
-    console.log(error);
     return "An error occurred";
   }
 }
 
-export async function getData() {
+export async function getData(): Promise<currentChatType[]> {
   try {
     const store = await AsyncStorage.getItem("history");
     const data = JSON.parse(store ?? "[]");
 
     return data;
   } catch (error) {
-    console.log(error);
-    return "An error occurred";
+    return [];
   }
 }

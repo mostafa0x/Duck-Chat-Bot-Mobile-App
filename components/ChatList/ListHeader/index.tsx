@@ -8,7 +8,7 @@ function ListHeader() {
   return (
     <View style={styles.container}>
       <Logo size={64} />
-      <Text style={styles.label}>What’s on the agenda today?</Text>
+      <Text style={styles.label}>Developed by Mostafa Ahmed </Text>
     </View>
   );
 }
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontFamily: Fonts.RobotoBold,
-    fontSize: rh(20),
+    fontSize: rh(16),
     color: Colors.secondaryText,
   },
 });
