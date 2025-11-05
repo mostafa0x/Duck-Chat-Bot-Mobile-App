@@ -19,9 +19,9 @@ function HistoryList_Item({
   const active = item.id === currentChat?.id;
 
   const handlePress = useCallback(() => {
+    router.navigate("/");
     dispatch(setCurrentChat(item));
-    router.push("/");
-  }, []);
+  }, [dispatch, item, router]);
 
   return (
     <TouchableOpacity

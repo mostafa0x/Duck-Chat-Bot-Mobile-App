@@ -5,6 +5,7 @@ import { rh, rw } from "@/utils/dimensions";
 import { FlashList, FlashListRef } from "@shopify/flash-list";
 import React, { memo, useCallback, useEffect, useRef } from "react";
 import { StyleSheet, View } from "react-native";
+import { shallowEqual } from "react-redux";
 import Item_ChatList from "./Item";
 import ListFooter from "./ListFooter";
 import ListHeader from "./ListHeader";
@@ -12,9 +13,14 @@ import ListHeader from "./ListHeader";
 function ChatList() {
   const dispatch = useAppDispatch();
   const listRef = useRef<FlashListRef<Message> | null>(null);
-  const { currentChat, isLoadingChat } = useAppSelector(
-    (state) => state.AppReducer
+  const currentChat = useAppSelector(
+    (state) => state.AppReducer.currentChat,
+    shallowEqual
   );
+  const isLoadingChat = useAppSelector(
+    (state) => state.AppReducer.isLoadingChat
+  );
+
   const renderItem = useCallback(({ item }: { item: Message }) => {
     return <Item_ChatList message={item} />;
   }, []);

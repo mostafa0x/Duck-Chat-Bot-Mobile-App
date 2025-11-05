@@ -5,10 +5,18 @@ import { rh, rw } from "@/utils/dimensions";
 import { FlashList } from "@shopify/flash-list";
 import React, { memo, useCallback } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { shallowEqual } from "react-redux";
 import HistoryList_Item from "./Item";
 
 function HistoryList() {
-  const { currentChat, history } = useAppSelector((state) => state.AppReducer);
+  const currentChat = useAppSelector(
+    (state) => state.AppReducer.currentChat,
+    shallowEqual
+  );
+  const history = useAppSelector(
+    (state) => state.AppReducer.history,
+    shallowEqual
+  );
 
   const renderItem = useCallback(
     ({ item }: { item: currentChatType }) => {

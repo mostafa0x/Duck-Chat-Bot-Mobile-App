@@ -14,7 +14,7 @@ function Item_ChatList({ message }: { message: Message }) {
 
   const handleSelect = useCallback(() => {
     router.push({ pathname: "/Selection", params: { messId: message.id } });
-  }, []);
+  }, [router, message]);
 
   const parts = useMemo(
     () => message.content?.split(/```([\s\S]*?)```/g) ?? [],
