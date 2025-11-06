@@ -55,16 +55,17 @@ export const getHistory = createAsyncThunk<currentChatType[]>(
   }
 );
 
-export const saveData = createAsyncThunk<
+export const deleteChat = createAsyncThunk<
   currentChatType[],
-  void,
+  number,
   { state: RootState }
->("AppSlice/saveData", async (_, { getState }) => {
+>("AppSlice/deleteChat", async (chatId, { getState }) => {
   const state = getState();
   const history = state.AppReducer.history;
   try {
-    await setData(history);
-    return history;
+    const newHistory = history.filter((chat) => chat.id !== chatId);
+    await setData(newHistory);
+    return newHistory;
   } catch (err) {
     return history;
   }
@@ -162,13 +163,13 @@ const AppSlice = createSlice({
         state.isLoadingChat = false;
       }
     },
-    deleteChat: (state, action: { payload: number }) => {
-      const chatId = action.payload;
-      console.log(chatId);
-      const newHistory = state.history.filter((chat) => chat.id !== chatId);
-      state.history = newHistory;
-      console.log("ddd");
-    },
+    // deleteChat: (state, action: { payload: number }) => {
+    //   const chatId = action.payload;
+    //   console.log(chatId);
+    //   const newHistory = state.history.filter((chat) => chat.id !== chatId);
+    //   state.history = newHistory;
+    //   console.log("ddd");
+    // },
   },
   extraReducers: (builder) => {
     builder.addCase(setHistory.fulfilled, (state, action) => {
@@ -177,7 +178,7 @@ const AppSlice = createSlice({
     builder.addCase(getHistory.fulfilled, (state, action) => {
       state.history = action.payload;
     });
-    builder.addCase(saveData.fulfilled, (state, action) => {
+    builder.addCase(deleteChat.fulfilled, (state, action) => {
       state.history = action.payload;
     });
   },
@@ -191,5 +192,4 @@ export const {
   receiveMessage,
   setErrorMessage,
   retryErrorMessage,
-  deleteChat,
 } = AppSlice.actions;
