@@ -55,6 +55,21 @@ export const getHistory = createAsyncThunk<currentChatType[]>(
   }
 );
 
+export const saveData = createAsyncThunk<
+  currentChatType[],
+  void,
+  { state: RootState }
+>("AppSlice/saveData", async (_, { getState }) => {
+  const state = getState();
+  const history = state.AppReducer.history;
+  try {
+    await setData(history);
+    return history;
+  } catch (err) {
+    return history;
+  }
+});
+
 const AppSlice = createSlice({
   name: "AppSlice",
   initialState,
@@ -147,12 +162,22 @@ const AppSlice = createSlice({
         state.isLoadingChat = false;
       }
     },
+    deleteChat: (state, action: { payload: number }) => {
+      const chatId = action.payload;
+      console.log(chatId);
+      const newHistory = state.history.filter((chat) => chat.id !== chatId);
+      state.history = newHistory;
+      console.log("ddd");
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(setHistory.fulfilled, (state, action) => {
       state.history = action.payload;
     });
     builder.addCase(getHistory.fulfilled, (state, action) => {
+      state.history = action.payload;
+    });
+    builder.addCase(saveData.fulfilled, (state, action) => {
       state.history = action.payload;
     });
   },
@@ -166,4 +191,5 @@ export const {
   receiveMessage,
   setErrorMessage,
   retryErrorMessage,
+  deleteChat,
 } = AppSlice.actions;

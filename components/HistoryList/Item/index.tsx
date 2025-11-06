@@ -1,3 +1,4 @@
+import BtnDelete from "@/components/Buttons/BtnDelete";
 import { Colors, Fonts } from "@/constants/theme";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { setCurrentChat } from "@/lib/store/AppSlice";
@@ -31,6 +32,7 @@ function HistoryList_Item({
       <Text style={styles.titleName} numberOfLines={1}>
         {item.name}
       </Text>
+      <BtnDelete chatId={item.id} />
     </TouchableOpacity>
   );
 }
@@ -41,6 +43,8 @@ const styles = StyleSheet.create({
     padding: rw(10),
     borderRadius: rw(10),
     flexShrink: 1,
+    justifyContent: "space-between",
+    flexDirection: "row",
   },
   activeBg: {
     backgroundColor: Colors.primaryButton,
