@@ -13,7 +13,7 @@ function Item_ChatList({ message }: { message: Message }) {
   const MyMessage = message?.role === "user";
 
   const handleSelect = useCallback(() => {
-    router.push({ pathname: "/Selection", params: { messId: message.id } });
+    router.navigate({ pathname: "/Selection", params: { messId: message.id } });
   }, [router, message]);
 
   const parts = useMemo(
@@ -79,5 +79,9 @@ const styles = StyleSheet.create({
 });
 
 export default memo(Item_ChatList, (prev, next) => {
-  return prev.message.id === next.message.id;
+  return (
+    prev.message.id === next.message.id &&
+    prev.message.status === next.message.status &&
+    prev.message.error === next.message.error
+  );
 });

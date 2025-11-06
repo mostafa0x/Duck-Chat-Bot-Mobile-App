@@ -60,8 +60,9 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   contentContainer: {
-    paddingVertical: rh(50),
+    paddingTop: rh(70),
     paddingHorizontal: rw(20),
+    paddingBottom: rh(200),
   },
   itemSeparator: {
     height: rh(20),

@@ -4,11 +4,11 @@ import { retryErrorMessage } from "@/lib/store/AppSlice";
 import handlerSendMessage from "@/services/handlerSendMessage";
 import { Message } from "@/types/AppSliceType";
 import { rf, rh } from "@/utils/dimensions";
-import React, { useCallback } from "react";
+import React, { memo, useCallback } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Button } from "react-native-paper";
 
-export default function ErrorMessage({ message }: { message: Message }) {
+function ErrorMessage({ message }: { message: Message }) {
   const dispatch = useAppDispatch();
   const handlerRetry = useCallback(async () => {
     dispatch(retryErrorMessage(message.id));
@@ -45,4 +45,8 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.RobotoBold,
     fontSize: rf(16),
   },
+});
+
+export default memo(ErrorMessage, (prev, next) => {
+  return prev.message.id === next.message.id;
 });
