@@ -27,18 +27,7 @@ The app features a smooth UI, responsive layout, dark mode–oriented theme colo
 </table>
 
 </div>
-## 🎨 Theme Highlights
 
-The app uses a modern dark theme focusing on contrast and readability:
-
-- **Primary Color:** `#324EFF`  
-- **Primary Background:** `#0e0e1b`  
-- **Secondary Background:** `#111728`  
-- **Primary Text:** `#FFFFFF`  
-- **Secondary Text:** `#959DAE`  
-- **Button Colors:** `#324EFF`, `#29374F`, `#314568`
-
----
 
 ## 🚀 Features
 
