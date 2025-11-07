@@ -7,6 +7,8 @@ The app features a smooth UI, responsive layout, dark mode–oriented theme colo
 
 ## 📸 Screenshots
 
+<div align="center">
+
 <table>
   <tr>
     <td align="center">
@@ -24,6 +26,7 @@ The app features a smooth UI, responsive layout, dark mode–oriented theme colo
   </tr>
 </table>
 
+</div>
 ## 🎨 Theme Highlights
 
 The app uses a modern dark theme focusing on contrast and readability:
