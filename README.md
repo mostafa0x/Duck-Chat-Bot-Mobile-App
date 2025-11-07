@@ -1,64 +1,77 @@
-# 🦆 Duck Chat Bot – Mobile App (Expo + React Native)
+# 🦆 Duck Chat Bot – Mobile App (Expo & React Native)
 
-تطبيق **Duck Chat Bot** هو تطبيق محمول مبني باستخدام **Expo** و **React Native**، يوفّر تجربة دردشة سلسة مع بوت ذكي، مع اعتماد تصميم حديث ومتجاوب يعتمد على ألوان الداكنة والخطوط المخصّصة.
+Duck Chat Bot is a modern mobile application built with **Expo** and **React Native**, offering a fast and interactive chat experience with a smart AI assistant.  
+The app features a smooth UI, responsive layout, dark mode–oriented theme colors, and high-performance rendering using FlashList and Reanimated.
+
+---
+
+## 📸 Screenshots
+
+<p align="center">
+  <img src="assets/screens/home.png" width="30%" />
+  <img src="assets/screens/history.png" width="30%" />
+  <img src="assets/screens/select.png" width="30%" />
+</p>
+
+---
+
+## 🎨 Theme Highlights
+
+The app uses a modern dark theme focusing on contrast and readability:
+
+- **Primary Color:** `#324EFF`  
+- **Primary Background:** `#0e0e1b`  
+- **Secondary Background:** `#111728`  
+- **Primary Text:** `#FFFFFF`  
+- **Secondary Text:** `#959DAE`  
+- **Button Colors:** `#324EFF`, `#29374F`, `#314568`
 
 ---
 
 ## 🚀 Features
 
-- ✅ بناء على **Expo Router** لسهولة التنقل  
-- ✅ واجهة متجاوبة باستخدام  
+- ✅ Built with **Expo Router** for structured file-based navigation  
+- ✅ Global state management using **Redux Toolkit**  
+- ✅ API communication, caching & realtime updates via **React Query**  
+- ✅ High-performance lists powered by **FlashList**  
+- ✅ Smooth animations using **Reanimated & Worklets**  
+- ✅ Responsive UI using:  
   - `react-native-responsive-dimensions`  
   - `react-native-responsive-fontsize`  
-- ✅ إدارة حالة قوية باستخدام **Redux Toolkit**  
-- ✅ نظام caching & fetching باستخدام **React Query**  
-- ✅ عرض رسائل بكفاءة عالية باستخدام **FlashList**  
-- ✅ استخدام خطوط مخصصة:  
-  - RobotoBold  
-  - RobotoSemiBold  
-  - RobotoMedium  
-  - RobotoLight  
-  - RobotoRegular  
-- ✅ ألوان الثيم الداكن:
-  - Primary: `#324EFF`
-  - Background: `#0e0e1bff`, `#111728`
-  - Text Colors: `#FFFFFF`, `#959DAE`
+- ✅ Modern UI components with **React Native Paper**  
+- ✅ Clipboard support, splash screen, haptics, and safe-area handling  
 
 ---
 
 ## 🛠️ Tech Stack
 
 ### **Core**
-- Expo 54
-- React Native 0.81
-- React 19
-- Expo Router 6
+- Expo 54  
+- React Native 0.81  
+- React 19  
+- Expo Router 6  
 
-### **State Management**
-- Redux Toolkit
-- React Redux
+### **State & Data**
+- Redux Toolkit  
+- React Query  
+- Axios  
 
-### **Server Communication**
-- Axios
-- React Query 5
-
-### **UI & Design**
+### **UI / UX**
 - React Native Paper  
 - Expo Image  
-- Responsive Dimensions / Font Size  
-- SVG Support  
-- Haptics / Clipboard
+- SVG rendering  
+- Indicators & loading animations  
 
 ### **Performance**
 - FlashList  
-- Reanimated v4  
-- Worklets
+- Reanimated  
+- Worklets  
 
 ---
 
-## 📦 Installation & Setup
+## 📦 Installation
 
-### 1️⃣ **Clone the repository**
+### 1️⃣ Clone the repository
 ```sh
 git clone https://github.com/your-username/duck-chat-bot-mobile-app.git
 cd duck-chat-bot-mobile-app
