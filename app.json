@@ -19,9 +19,9 @@
         "monochromeImage": "./assets/icons/adaptive-icon.png"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.mostafaahmed.duckai"
     },
-
     "plugins": [
       "expo-router",
       [
