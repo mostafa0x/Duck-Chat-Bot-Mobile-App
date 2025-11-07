@@ -7,13 +7,22 @@ The app features a smooth UI, responsive layout, dark mode–oriented theme colo
 
 ## 📸 Screenshots
 
-<p align="center">
-  <img src="./assets/screenshots/home.PNG" width="30%" />
-  <img src="./assets/screenshots/history.PNG" width="30%" />
-  <img src="./assets/screenshots/textSelection.PNG" width="30%" />
-</p>
-
----
+<table>
+  <tr>
+    <td align="center">
+      <h4>Home</h4>
+      <img src="./assets/screenshots/home.PNG" width="250" />
+    </td>
+    <td align="center">
+      <h4>History</h4>
+      <img src="./assets/screenshots/history.PNG" width="250" />
+    </td>
+    <td align="center">
+      <h4>Text Selection</h4>
+      <img src="./assets/screenshots/textSelection.PNG" width="250" />
+    </td>
+  </tr>
+</table>
 
 ## 🎨 Theme Highlights
 
