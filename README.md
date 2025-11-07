@@ -1,50 +1,64 @@
-# Welcome to your Expo app 👋
+# 🦆 Duck Chat Bot – Mobile App (Expo + React Native)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+تطبيق **Duck Chat Bot** هو تطبيق محمول مبني باستخدام **Expo** و **React Native**، يوفّر تجربة دردشة سلسة مع بوت ذكي، مع اعتماد تصميم حديث ومتجاوب يعتمد على ألوان الداكنة والخطوط المخصّصة.
 
-## Get started
+---
 
-1. Install dependencies
+## 🚀 Features
 
-   ```bash
-   npm install
-   ```
+- ✅ بناء على **Expo Router** لسهولة التنقل  
+- ✅ واجهة متجاوبة باستخدام  
+  - `react-native-responsive-dimensions`  
+  - `react-native-responsive-fontsize`  
+- ✅ إدارة حالة قوية باستخدام **Redux Toolkit**  
+- ✅ نظام caching & fetching باستخدام **React Query**  
+- ✅ عرض رسائل بكفاءة عالية باستخدام **FlashList**  
+- ✅ استخدام خطوط مخصصة:  
+  - RobotoBold  
+  - RobotoSemiBold  
+  - RobotoMedium  
+  - RobotoLight  
+  - RobotoRegular  
+- ✅ ألوان الثيم الداكن:
+  - Primary: `#324EFF`
+  - Background: `#0e0e1bff`, `#111728`
+  - Text Colors: `#FFFFFF`, `#959DAE`
 
-2. Start the app
+---
 
-   ```bash
-   npx expo start
-   ```
+## 🛠️ Tech Stack
 
-In the output, you'll find options to open the app in a
+### **Core**
+- Expo 54
+- React Native 0.81
+- React 19
+- Expo Router 6
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+### **State Management**
+- Redux Toolkit
+- React Redux
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### **Server Communication**
+- Axios
+- React Query 5
 
-## Get a fresh project
+### **UI & Design**
+- React Native Paper  
+- Expo Image  
+- Responsive Dimensions / Font Size  
+- SVG Support  
+- Haptics / Clipboard
 
-When you're ready, run:
+### **Performance**
+- FlashList  
+- Reanimated v4  
+- Worklets
 
-```bash
-npm run reset-project
-```
+---
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 📦 Installation & Setup
 
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### 1️⃣ **Clone the repository**
+```sh
+git clone https://github.com/your-username/duck-chat-bot-mobile-app.git
+cd duck-chat-bot-mobile-app
