@@ -8,9 +8,9 @@ The app features a smooth UI, responsive layout, dark mode–oriented theme colo
 ## 📸 Screenshots
 
 <p align="center">
-  <img src="assets/screens/home.png" width="30%" />
-  <img src="assets/screens/history.png" width="30%" />
-  <img src="assets/screens/select.png" width="30%" />
+  <img src="assets/screenshots/home.png" width="30%" />
+  <img src="assets/screenshots/history.png" width="30%" />
+  <img src="assets/screenshots/textSelection.png" width="30%" />
 </p>
 
 ---
